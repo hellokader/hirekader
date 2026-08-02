@@ -1,0 +1,48 @@
+# Dependencies
+node_modules
+.pnp
+.pnp.js
+
+# Build outputs
+.next
+out
+build
+dist
+
+# Environment files
+.env
+.env.local
+.env.production
+.env*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pm2logs
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea
+*.swp
+*.swo
+.vscode
+*.code-workspace
+
+# Debug
+.npm
+.eslintcache
+.node_repl_history
+
+# Testing
+coverage
+.nyc_output
+
+# Misc
+*.pem
+.vercel
