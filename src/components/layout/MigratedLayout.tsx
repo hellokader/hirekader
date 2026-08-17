@@ -6,6 +6,7 @@ import { Calendar, Mail, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from "@/lib/site";
 import { routes } from "@/lib/routes";
+import { SmartLink } from "@/components/navigation/SmartLink";
 import "./migrated-layout.css";
 
 type LayoutMode = "home" | "blog" | "article";
@@ -36,19 +37,19 @@ export function MigratedHeader({ mode = "home" }: MigratedHeaderProps) {
     <>
       <header className="m-topbar" id="top">
         <div className="m-wrap">
-          <Link className="m-wordmark" href={routes.home} aria-label="Hire Kader Home">
+          <SmartLink className="m-wordmark" href={routes.home} aria-label="Hire Kader Home">
             <Image src="/images/logo-714c93142dfe.png" alt="Hire Kader" width={154} height={40} priority />
-          </Link>
+          </SmartLink>
           <nav className="m-navmenu" aria-label="Primary">
             {nav.map((item) => (
-              <Link
+              <SmartLink
                 className={mode === "blog" && item.label === "Blog" ? "active" : ""}
                 aria-current={mode === "article" && item.label === "Blog" ? "page" : undefined}
                 href={item.href}
                 key={item.label}
               >
                 {item.label}
-              </Link>
+              </SmartLink>
             ))}
           </nav>
           <div className="m-nav-right">
@@ -78,14 +79,14 @@ export function MigratedHeader({ mode = "home" }: MigratedHeaderProps) {
         </button>
         <nav className="m-drawer-menu">
           {mode !== "home" && (
-            <Link href={routes.home} onClick={() => setOpen(false)}>
+            <SmartLink href={routes.home} onClick={() => setOpen(false)}>
               Home
-            </Link>
+            </SmartLink>
           )}
           {nav.map((item) => (
-            <Link href={item.href} key={item.label} onClick={() => setOpen(false)}>
+            <SmartLink href={item.href} key={item.label} onClick={() => setOpen(false)}>
               {item.label}
-            </Link>
+            </SmartLink>
           ))}
         </nav>
         <Link className="m-btn m-btn-accent m-btn-block" href={routes.audit} onClick={() => setOpen(false)}>

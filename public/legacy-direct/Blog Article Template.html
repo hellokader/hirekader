@@ -924,7 +924,7 @@ var anchor=event.target.closest&&event.target.closest('a[href]');
 if(!anchor)return;
 var href=anchor.getAttribute('href');
 if(!href||href.charAt(0)!=='/'||href.indexOf('/legacy-assets/')===0)return;
-if(window.top!==window.self){event.preventDefault();window.top.location.href=href;}
+if(window.top!==window.self){event.preventDefault();window.parent.postMessage({type:'hirekader:navigate',href:href},window.location.origin);}
 });
 })();
 </script>

@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 import { navItems } from "@/data/site-content";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { routes } from "@/lib/routes";
+import { SmartLink } from "@/components/navigation/SmartLink";
 
 type HeaderProps = {
   active?: "home" | "blog";
@@ -21,14 +21,14 @@ export function Header({ active = "home", compact = false }: HeaderProps) {
     <>
       <header className="topbar" id="top">
         <div className="wrap">
-          <Link className="wordmark" href={routes.home} aria-label="Hire Kader Home">
+          <SmartLink className="wordmark" href={routes.home} aria-label="Hire Kader Home">
             <Image src="/images/logo-714c93142dfe.png" alt="Hire Kader" width={154} height={40} priority />
-          </Link>
+          </SmartLink>
           <nav className="navmenu" aria-label="Primary">
             {items.map((item) => (
-              <Link className={active === "blog" && item.label === "Blog" ? "active" : ""} href={item.href} key={item.label}>
+              <SmartLink className={active === "blog" && item.label === "Blog" ? "active" : ""} href={item.href} key={item.label}>
                 {item.label}
-              </Link>
+              </SmartLink>
             ))}
           </nav>
           <div className="nav-right">
@@ -54,13 +54,13 @@ export function Header({ active = "home", compact = false }: HeaderProps) {
           x
         </button>
         <nav className="drawer-menu">
-          <Link href={routes.home} onClick={() => setOpen(false)}>
+          <SmartLink href={routes.home} onClick={() => setOpen(false)}>
             Home
-          </Link>
+          </SmartLink>
           {items.map((item) => (
-            <Link href={item.href} key={item.label} onClick={() => setOpen(false)}>
+            <SmartLink href={item.href} key={item.label} onClick={() => setOpen(false)}>
               {item.label}
-            </Link>
+            </SmartLink>
           ))}
         </nav>
         <ButtonLink href={routes.audit} block>
