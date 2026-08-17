@@ -21,7 +21,7 @@ export function Header({ active = "home", compact = false }: HeaderProps) {
     <>
       <header className="topbar" id="top">
         <div className="wrap">
-          <Link className="wordmark" href="/" aria-label="Hire Kader home">
+          <Link className="wordmark" href={routes.home} aria-label="Hire Kader Home">
             <Image src="/images/logo-714c93142dfe.png" alt="Hire Kader" width={154} height={40} priority />
           </Link>
           <nav className="navmenu" aria-label="Primary">

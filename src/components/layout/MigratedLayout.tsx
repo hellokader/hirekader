@@ -36,7 +36,7 @@ export function MigratedHeader({ mode = "home" }: MigratedHeaderProps) {
     <>
       <header className="m-topbar" id="top">
         <div className="m-wrap">
-          <Link className="m-wordmark" href="/" aria-label="Hire Kader home">
+          <Link className="m-wordmark" href={routes.home} aria-label="Hire Kader Home">
             <Image src="/images/logo-714c93142dfe.png" alt="Hire Kader" width={154} height={40} priority />
           </Link>
           <nav className="m-navmenu" aria-label="Primary">
@@ -78,7 +78,7 @@ export function MigratedHeader({ mode = "home" }: MigratedHeaderProps) {
         </button>
         <nav className="m-drawer-menu">
           {mode !== "home" && (
-            <Link href="/" onClick={() => setOpen(false)}>
+            <Link href={routes.home} onClick={() => setOpen(false)}>
               Home
             </Link>
           )}
@@ -102,7 +102,7 @@ export function MigratedFooter({ compact = false }: { compact?: boolean }) {
       <footer className="m-article-footer">
         <div className="m-wrap">
           <span>© 2026 Hire Kader</span>
-          <Link href="/">hirekader.com</Link>
+          <Link href={routes.home}>hirekader.com</Link>
         </div>
       </footer>
     );

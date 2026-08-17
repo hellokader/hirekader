@@ -213,6 +213,7 @@ section {
   align-items: center;
   color: var(--ink);
   font-weight: 800;
+  cursor: pointer;
 }
 
 .wordmark img {

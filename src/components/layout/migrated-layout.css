@@ -53,6 +53,7 @@
 .m-wordmark {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .m-wordmark img {
