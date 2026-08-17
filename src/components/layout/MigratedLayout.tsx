@@ -7,6 +7,7 @@ import { useState } from "react";
 import { siteConfig } from "@/lib/site";
 import { routes } from "@/lib/routes";
 import { SmartLink } from "@/components/navigation/SmartLink";
+import { HeaderLogo } from "@/components/layout/HeaderLogo";
 import "./migrated-layout.css";
 
 type LayoutMode = "home" | "blog" | "article";
@@ -37,9 +38,9 @@ export function MigratedHeader({ mode = "home" }: MigratedHeaderProps) {
     <>
       <header className="m-topbar" id="top">
         <div className="m-wrap">
-          <SmartLink className="m-wordmark" href={routes.home} aria-label="Hire Kader Home">
+          <HeaderLogo className="m-wordmark">
             <Image src="/images/logo-714c93142dfe.png" alt="Hire Kader" width={154} height={40} priority />
-          </SmartLink>
+          </HeaderLogo>
           <nav className="m-navmenu" aria-label="Primary">
             {nav.map((item) => (
               <SmartLink

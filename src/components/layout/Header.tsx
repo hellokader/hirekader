@@ -6,6 +6,7 @@ import { navItems } from "@/data/site-content";
 import { ButtonLink } from "@/components/ui/ButtonLink";
 import { routes } from "@/lib/routes";
 import { SmartLink } from "@/components/navigation/SmartLink";
+import { HeaderLogo } from "@/components/layout/HeaderLogo";
 
 type HeaderProps = {
   active?: "home" | "blog";
@@ -21,9 +22,9 @@ export function Header({ active = "home", compact = false }: HeaderProps) {
     <>
       <header className="topbar" id="top">
         <div className="wrap">
-          <SmartLink className="wordmark" href={routes.home} aria-label="Hire Kader Home">
+          <HeaderLogo className="wordmark">
             <Image src="/images/logo-714c93142dfe.png" alt="Hire Kader" width={154} height={40} priority />
-          </SmartLink>
+          </HeaderLogo>
           <nav className="navmenu" aria-label="Primary">
             {items.map((item) => (
               <SmartLink className={active === "blog" && item.label === "Blog" ? "active" : ""} href={item.href} key={item.label}>

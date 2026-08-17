@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 type LegacyFrameProps = {
   title: string;
@@ -11,6 +11,7 @@ type LegacyFrameProps = {
 export function LegacyFrame({ title, src }: LegacyFrameProps) {
   const pathname = usePathname();
   const router = useRouter();
+  const frameRef = useRef<HTMLIFrameElement>(null);
 
   useEffect(() => {
     function handleMessage(event: MessageEvent) {
@@ -33,6 +34,10 @@ export function LegacyFrame({ title, src }: LegacyFrameProps) {
         !window.location.search &&
         !window.location.hash
       ) {
+        if (pathname === "/") {
+          scrollToTop(frameRef.current);
+        }
+
         return;
       }
 
@@ -45,7 +50,15 @@ export function LegacyFrame({ title, src }: LegacyFrameProps) {
 
   return (
     <main className="legacy-shell">
-      <iframe className="legacy-frame" src={src} title={title} />
+      <iframe ref={frameRef} className="legacy-frame" src={src} title={title} />
     </main>
   );
+}
+
+function scrollToTop(frame: HTMLIFrameElement | null) {
+  if (window.scrollY > 0) {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  frame?.contentWindow?.scrollTo({ top: 0, behavior: "smooth" });
 }
