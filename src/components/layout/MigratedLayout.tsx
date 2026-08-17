@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Calendar, Mail, MessageCircle } from "lucide-react";
 import { useState } from "react";
 import { siteConfig } from "@/lib/site";
+import { routes } from "@/lib/routes";
 import "./migrated-layout.css";
 
 type LayoutMode = "home" | "blog" | "article";
@@ -14,17 +15,17 @@ type MigratedHeaderProps = {
 };
 
 const homeNav = [
-  { label: "Portfolio", href: "/#results" },
-  { label: "Services", href: "/#services" },
-  { label: "About", href: "/#about" },
-  { label: "Blog", href: "/blog" }
+  { label: "Portfolio", href: routes.portfolio },
+  { label: "Services", href: routes.services },
+  { label: "About", href: routes.about },
+  { label: "Blog", href: routes.blog }
 ];
 
 const articleNav = [
-  { label: "Services", href: "/#services" },
-  { label: "Results", href: "/#results" },
-  { label: "Blog", href: "/blog" },
-  { label: "About", href: "/#about" }
+  { label: "Services", href: routes.services },
+  { label: "Results", href: routes.portfolio },
+  { label: "Blog", href: routes.blog },
+  { label: "About", href: routes.about }
 ];
 
 export function MigratedHeader({ mode = "home" }: MigratedHeaderProps) {
@@ -63,7 +64,7 @@ export function MigratedHeader({ mode = "home" }: MigratedHeaderProps) {
               <span />
               <span />
             </button>
-            <Link className="m-btn m-btn-accent" href="/#audit">
+            <Link className="m-btn m-btn-accent" href={routes.audit}>
               Get a free audit
             </Link>
           </div>
@@ -87,7 +88,7 @@ export function MigratedHeader({ mode = "home" }: MigratedHeaderProps) {
             </Link>
           ))}
         </nav>
-        <Link className="m-btn m-btn-accent m-btn-block" href="/#audit" onClick={() => setOpen(false)}>
+        <Link className="m-btn m-btn-accent m-btn-block" href={routes.audit} onClick={() => setOpen(false)}>
           Get a free audit
         </Link>
       </aside>
@@ -124,30 +125,30 @@ export function MigratedFooter({ compact = false }: { compact?: boolean }) {
                 <path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.29-.02-2.95-1.8-2.95-1.8 0-2.08 1.4-2.08 2.86V21H9z" />
               </svg>
             </a>
-            <Link href="/#call" aria-label="Email">
+            <Link href={routes.contact} aria-label="Email">
               <Mail />
             </Link>
-            <Link href="/#call" aria-label="WhatsApp">
+            <Link href={routes.contact} aria-label="WhatsApp">
               <MessageCircle />
             </Link>
-            <Link href="/#call" aria-label="Book a call">
+            <Link href={routes.contact} aria-label="Book a call">
               <Calendar />
             </Link>
           </div>
         </div>
         <div className="m-foot-grid">
-          <FooterColumn title="Start here" links={[["Get a free audit", "/#audit"], ["Book a call", "/#call"], ["FAQ", "/#faq"]]} />
+          <FooterColumn title="Start here" links={[["Get a free audit", routes.audit], ["Book a call", routes.contact], ["FAQ", routes.faq]]} />
           <FooterColumn
             title="What I do"
             links={[
-              ["Google Ads management", "/#services"],
-              ["Local Services Ads", "/#services"],
-              ["Call & form tracking", "/#services"],
-              ["Landing page fixes", "/#services"]
+              ["Google Ads management", routes.service("google-ads")],
+              ["Local Services Ads", routes.service("local-services-ads")],
+              ["Call & form tracking", routes.service("call-form-tracking")],
+              ["Landing page fixes", routes.service("landing-page-fixes")]
             ]}
           />
-          <FooterColumn title="Service areas" links={[["United States", "/#audit"], ["United Kingdom", "/#audit"], ["Australia", "/#audit"]]} />
-          <FooterColumn title="For agencies" links={[["White-label Google Ads partner →", "/#audit"], ["Writing", "/blog"], ["About me", "/#about"]]} />
+          <FooterColumn title="Service areas" links={[["United States", routes.contact], ["United Kingdom", routes.contact], ["Australia", routes.contact]]} />
+          <FooterColumn title="For agencies" links={[["White-label Google Ads partner →", routes.audit], ["Writing", routes.blog], ["About me", routes.about]]} />
         </div>
         <div className="m-foot-bottom">© 2026 Abdul Kader, Google Ads for home service businesses. All rights reserved.</div>
       </div>

@@ -12,18 +12,43 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/index.html",
+        destination: "/",
+        permanent: true
+      },
+      {
+        source: "/blog.html",
+        destination: "/Blog",
+        permanent: true
+      },
+      {
+        source: "/services.html",
+        destination: "/Services",
+        permanent: true
+      },
+      {
+        source: "/about.html",
+        destination: "/About",
+        permanent: true
+      },
+      {
+        source: "/contact.html",
+        destination: "/Contact",
+        permanent: true
+      },
+      {
         source: "/Kader%20-%20Redesign%20(hirekader).html",
         destination: "/",
         permanent: true
       },
       {
         source: "/Blog%20Index.html",
-        destination: "/blog",
+        destination: "/Blog",
         permanent: true
       },
       {
         source: "/Blog%20Article%20Template.html",
-        destination: "/blog/why-your-leads-are-lying-to-you",
+        destination: "/Blog/why-your-leads-are-lying-to-you",
         permanent: true
       }
     ];

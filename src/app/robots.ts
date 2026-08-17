@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site";
 
 export default function robots(): MetadataRoute.Robots {
-  const isProduction = siteConfig.url === "https://hirekader.com";
+  const isProduction = siteConfig.url === "https://www.hirekader.com";
 
   return {
     rules: {

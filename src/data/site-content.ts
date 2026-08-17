@@ -15,12 +15,13 @@ import {
   Settings2,
   Target
 } from "lucide-react";
+import { routes } from "@/lib/routes";
 
 export const navItems = [
-  { label: "Portfolio", href: "/#results" },
-  { label: "Services", href: "/#services" },
-  { label: "About", href: "/#about" },
-  { label: "Blog", href: "/blog" }
+  { label: "Portfolio", href: routes.portfolio },
+  { label: "Services", href: routes.services },
+  { label: "About", href: routes.about },
+  { label: "Blog", href: routes.blog }
 ];
 
 export const trades = [

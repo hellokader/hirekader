@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Calendar, Mail, MessageCircle } from "lucide-react";
 import { siteConfig } from "@/lib/site";
+import { routes } from "@/lib/routes";
 
 export function Footer() {
   return (
@@ -19,13 +20,13 @@ export function Footer() {
             <a href={siteConfig.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn">
               in
             </a>
-            <Link href="/#call" aria-label="Email">
+            <Link href={routes.contact} aria-label="Email">
               <Mail />
             </Link>
-            <Link href="/#call" aria-label="WhatsApp">
+            <Link href={routes.contact} aria-label="WhatsApp">
               <MessageCircle />
             </Link>
-            <Link href="/#call" aria-label="Book a call">
+            <Link href={routes.contact} aria-label="Book a call">
               <Calendar />
             </Link>
           </div>
@@ -33,28 +34,28 @@ export function Footer() {
         <div className="foot-grid">
           <div className="foot-col">
             <h5>Start here</h5>
-            <Link href="/#audit">Get a free audit</Link>
-            <Link href="/#call">Book a call</Link>
-            <Link href="/#faq">FAQ</Link>
+            <Link href={routes.audit}>Get a free audit</Link>
+            <Link href={routes.contact}>Book a call</Link>
+            <Link href={routes.faq}>FAQ</Link>
           </div>
           <div className="foot-col">
             <h5>What I do</h5>
-            <Link href="/#services">Google Ads management</Link>
-            <Link href="/#services">Local Services Ads</Link>
-            <Link href="/#services">Call & form tracking</Link>
-            <Link href="/#services">Landing page fixes</Link>
+            <Link href={routes.service("google-ads")}>Google Ads management</Link>
+            <Link href={routes.service("local-services-ads")}>Local Services Ads</Link>
+            <Link href={routes.service("call-form-tracking")}>Call & form tracking</Link>
+            <Link href={routes.service("landing-page-fixes")}>Landing page fixes</Link>
           </div>
           <div className="foot-col">
             <h5>Service areas</h5>
-            <Link href="/#audit">United States</Link>
-            <Link href="/#audit">United Kingdom</Link>
-            <Link href="/#audit">Australia</Link>
+            <Link href={routes.contact}>United States</Link>
+            <Link href={routes.contact}>United Kingdom</Link>
+            <Link href={routes.contact}>Australia</Link>
           </div>
           <div className="foot-col">
             <h5>For agencies</h5>
-            <Link href="/#audit">White-label Google Ads partner</Link>
-            <Link href="/blog">Writing</Link>
-            <Link href="/#about">About me</Link>
+            <Link href={routes.audit}>White-label Google Ads partner</Link>
+            <Link href={routes.blog}>Writing</Link>
+            <Link href={routes.about}>About me</Link>
           </div>
         </div>
         <div className="foot-bottom">© 2026 Abdul Kader, Google Ads for home service businesses. All rights reserved.</div>

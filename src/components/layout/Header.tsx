@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { navItems } from "@/data/site-content";
 import { ButtonLink } from "@/components/ui/ButtonLink";
+import { routes } from "@/lib/routes";
 
 type HeaderProps = {
   active?: "home" | "blog";
@@ -14,11 +15,7 @@ type HeaderProps = {
 export function Header({ active = "home", compact = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
 
-  const items = navItems.map((item) =>
-    active === "blog" && item.label !== "Blog"
-      ? { ...item, href: item.href.replace("/#", "/#") }
-      : item
-  );
+  const items = navItems;
 
   return (
     <>
@@ -35,7 +32,7 @@ export function Header({ active = "home", compact = false }: HeaderProps) {
             ))}
           </nav>
           <div className="nav-right">
-            {!compact && <ButtonLink href="/#audit">Get a free audit</ButtonLink>}
+            {!compact && <ButtonLink href={routes.audit}>Get a free audit</ButtonLink>}
             <button
               className="hamburger"
               aria-label="Open menu"
@@ -57,7 +54,7 @@ export function Header({ active = "home", compact = false }: HeaderProps) {
           x
         </button>
         <nav className="drawer-menu">
-          <Link href="/" onClick={() => setOpen(false)}>
+          <Link href={routes.home} onClick={() => setOpen(false)}>
             Home
           </Link>
           {items.map((item) => (
@@ -66,7 +63,7 @@ export function Header({ active = "home", compact = false }: HeaderProps) {
             </Link>
           ))}
         </nav>
-        <ButtonLink href="/#audit" block>
+        <ButtonLink href={routes.audit} block>
           Get a free audit
         </ButtonLink>
       </aside>

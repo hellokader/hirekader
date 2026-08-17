@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { ComponentType } from "react";
 import type { LucideProps } from "lucide-react";
 import { categoryToSlug } from "@/data/site-content";
+import { routes } from "@/lib/routes";
 
 type BlogCardProps = {
   post: {
@@ -11,7 +12,6 @@ type BlogCardProps = {
     category: string;
     displayDate: string;
     icon: ComponentType<LucideProps>;
-    draftOnly?: boolean;
   };
   headingLevel?: "h2" | "h4";
 };
@@ -19,10 +19,9 @@ type BlogCardProps = {
 export function BlogCard({ post, headingLevel = "h2" }: BlogCardProps) {
   const Icon = post.icon;
   const Heading = headingLevel;
-  const href = post.draftOnly ? "/blog" : `/blog/${post.slug}`;
 
   return (
-    <Link className="post" data-cat={categoryToSlug(post.category)} href={href} aria-disabled={post.draftOnly || undefined}>
+    <Link className="post" data-cat={categoryToSlug(post.category)} href={routes.blogPost(post.slug)}>
       <div className="cover">
         <Icon aria-hidden="true" />
       </div>
