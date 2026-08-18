@@ -11,5 +11,5 @@ export const metadata: Metadata = {
 };
 
 export default function HomePage() {
-  return <LegacyFrame title="Hire Kader homepage" src="/legacy-direct/Kader%20-%20Redesign%20(hirekader).html" />;
+  return <LegacyFrame title="Hire Kader homepage" src="/api/legacy-home" />;
 }
