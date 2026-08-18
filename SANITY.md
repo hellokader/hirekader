@@ -127,6 +127,28 @@ Approved public URL casing remains:
 /Blog/[slug]
 ```
 
+## How to Import Existing Blog Posts
+
+The initial blog migration file lives at:
+
+```text
+sanity/import/blog-posts.ndjson
+```
+
+Import it into the `production` dataset:
+
+```bash
+npx sanity dataset import sanity/import/blog-posts.ndjson production --replace
+```
+
+After import, open:
+
+```text
+/studio/structure/content;blogPost
+```
+
+You should see the existing Blog Posts in Sanity. Published Sanity posts are used by `/Blog` and `/Blog/[slug]`; if Sanity is empty, the website keeps the current fallback posts instead of going blank.
+
 ## How to Add a Portfolio Project
 
 1. Open `/studio`.

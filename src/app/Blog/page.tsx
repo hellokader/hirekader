@@ -13,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function BlogPage() {
-  return <LegacyFrame title="Hire Kader blog" src="/legacy-direct/Blog%20Index.html" />;
+  return <LegacyFrame title="Hire Kader blog" src="/api/legacy-blog" />;
 }

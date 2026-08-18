@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LegacyFrame } from "@/components/legacy/LegacyFrame";
-import { blogPosts } from "@/data/site-content";
+import { getBlogPost, getFallbackBlogPosts } from "@/sanity/lib/blog";
 import { absoluteUrl } from "@/lib/site";
 import { routes } from "@/lib/routes";
 
@@ -10,12 +10,12 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+  return getFallbackBlogPosts().map((post) => ({ slug: post.slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = await getBlogPost(slug);
 
   if (!post) {
     return {};
@@ -23,16 +23,20 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   return {
     title: post.title,
-    description: post.description,
+    description: post.seo?.metaDescription || post.description,
     alternates: {
-      canonical: absoluteUrl(routes.blogPost(post.slug))
+      canonical: post.seo?.canonicalUrl || absoluteUrl(routes.blogPost(post.slug))
     },
     openGraph: {
       type: "article",
-      title: post.title,
-      description: post.description,
+      title: post.seo?.ogTitle || post.title,
+      description: post.seo?.ogDescription || post.seo?.metaDescription || post.description,
       publishedTime: post.date,
       modifiedTime: post.updated || undefined
+    },
+    robots: {
+      index: !post.seo?.noIndex,
+      follow: !post.seo?.noFollow
     },
     twitter: {
       card: "summary_large_image"
@@ -42,11 +46,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
 export default async function BlogArticlePage({ params }: PageProps) {
   const { slug } = await params;
-  const post = blogPosts.find((item) => item.slug === slug);
+  const post = await getBlogPost(slug);
 
   if (!post) {
     notFound();
   }
 
-  return <LegacyFrame title={post.title} src="/legacy-direct/Blog%20Article%20Template.html" />;
+  return <LegacyFrame title={post.title} src={`/api/legacy-blog/${post.slug}`} />;
 }
